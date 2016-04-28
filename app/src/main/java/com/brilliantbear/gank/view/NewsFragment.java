@@ -11,6 +11,7 @@ import android.view.View;
 import com.brilliantbear.gank.R;
 import com.brilliantbear.gank.adapter.NewsAdapter;
 import com.brilliantbear.gank.bean.NewsEntity;
+import com.brilliantbear.gank.db.DB;
 import com.brilliantbear.gank.presenter.IListPresenter;
 import com.brilliantbear.gank.presenter.NewsPresenter;
 import com.brilliantbear.gank.utils.DensityUtils;
@@ -37,6 +38,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
     private List<NewsEntity> mNews;
     private int hadLoadPaged = 1;
     private LinearLayoutManager mLayoutManager;
+    private DB mDB;
 
 
     @Override
@@ -68,10 +70,15 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-        mNews = new ArrayList<>();
+        mDB = DB.getInstance(mContext);
+
+        mNews = mDB.getNews();
+        if (mNews == null)
+            mNews = new ArrayList<>();
 
         mAdapter = new NewsAdapter(mNews);
         mList.setAdapter(mAdapter);
+
         mPresenter = new NewsPresenter(this);
         mPresenter.getData(NEWS_COUNT, START_PAGED);
     }
@@ -105,11 +112,14 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         mAdapter.notifyDataSetChanged();
 
         Snackbar.make(mList, "数据已刷新", Snackbar.LENGTH_SHORT).show();
+        Log.d("Gank", "data refresh");
+        mDB.saveNews(newsEntities);
     }
 
     @Override
     public void dataLoadMore(List<NewsEntity> newsEntities) {
         if (newsEntities != null) {
+            hadLoadPaged++;
             int startPosition = mNews.size();
             mNews.addAll(newsEntities);
             mAdapter.notifyItemRangeInserted(startPosition, newsEntities.size());

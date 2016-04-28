@@ -1,10 +1,13 @@
 package com.brilliantbear.gank.bean;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by cx.lian on 2016/4/28.
  */
-public class NewsEntity {
-
+public class NewsEntity extends RealmObject{
+    @PrimaryKey
     private String _id;
     private String createdAt;
     private String desc;
@@ -12,7 +15,7 @@ public class NewsEntity {
     private String source;
     private String type;
     private String url;
-    private boolean used;
+    private Boolean used;
     private String who;
 
     public String get_id() {
