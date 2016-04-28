@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Gank</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+    <string name="tab_news">干货</string>
+    <string name="tab_girls">妹子</string>
+
+
+    <array name="tab_title">
+        <item>@string/tab_news</item>
+        <item>@string/tab_girls</item>
+    </array>
 </resources>
