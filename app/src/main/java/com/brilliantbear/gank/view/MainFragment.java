@@ -36,6 +36,7 @@ public class MainFragment extends BaseFragment {
         String[] tabTitles = getResources().getStringArray(R.array.tab_title);
 
         fragments.add(new NewsFragment());
+        fragments.add(new GirlsFragment());
 
         PagerAdapter mAdapter = new PagerAdapter(getFragmentManager(), fragments, tabTitles);
         mPgaer.setAdapter(mAdapter);

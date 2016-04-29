@@ -32,4 +32,12 @@ public class ImageSize {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    @Override
+    public String toString() {
+        return "ImageSize{" +
+                "width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }

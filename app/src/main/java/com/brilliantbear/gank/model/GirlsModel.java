@@ -1,15 +1,15 @@
 package com.brilliantbear.gank.model;
 
-import com.brilliantbear.gank.bean.ImageSize;
+import android.util.Log;
+
 import com.brilliantbear.gank.bean.NewsEntity;
 import com.brilliantbear.gank.bean.ResultEntity;
 import com.brilliantbear.gank.net.Net;
 
-import java.io.IOException;
 import java.util.List;
 
-import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -19,14 +19,17 @@ import rx.schedulers.Schedulers;
 public class GirlsModel implements IListModel {
 
     private Net mNet;
+    private OnGetDataListener listener;
 
-    public GirlsModel() {
+    public GirlsModel(OnGetDataListener listener) {
+        this.listener = listener;
         mNet = Net.getInstance();
     }
 
     @Override
-    public void getData(int count, int paged) {
-        mNet.getGirls(10, 1)
+    public void getData(int count, final int paged) {
+        Log.d("Gank", "load girls data");
+        mNet.getGirls(count, paged)
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<ResultEntity, List<NewsEntity>>() {
                     @Override
@@ -34,38 +37,20 @@ public class GirlsModel implements IListModel {
                         return resultEntity.getResults();
                     }
                 })
-                .flatMap(new Func1<List<NewsEntity>, Observable<NewsEntity>>() {
-                    @Override
-                    public Observable<NewsEntity> call(List<NewsEntity> newsEntities) {
-                        return Observable.from(newsEntities);
-                    }
-                })
-                .map(new Func1<NewsEntity, ImageSize>() {
-                    @Override
-                    public ImageSize call(NewsEntity newsEntity) {
-                        ImageSize imageSize = new ImageSize();
-                        try {
-                            imageSize = mNet.getImageSize(newsEntity.getUrl());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        return imageSize;
-                    }
-                })
-                .subscribe(new Subscriber<ImageSize>() {
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<List<NewsEntity>>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        listener.onFailed();
                     }
 
                     @Override
-                    public void onNext(ImageSize imageSize) {
-
+                    public void onNext(List<NewsEntity> newsEntities) {
+                        listener.onSuccess(newsEntities, paged == 1);
                     }
                 });
     }

@@ -54,4 +54,18 @@ public class DB {
     public List<NewsEntity> getNews() {
         return new ArrayList<NewsEntity>(mRealm.where(NewsEntity.class).findAll());
     }
+
+
+    public List<NewsEntity> checkImageSize(List<NewsEntity> newsEntities) {
+        List<NewsEntity> list = new ArrayList<>();
+        for (NewsEntity entity : newsEntities) {
+            Image first = mRealm.where(Image.class)
+                    .equalTo("url", entity.getUrl())
+                    .notEqualTo("width", 0)
+                    .notEqualTo("height", 0)
+                    .findFirst();
+            list.add(entity);
+        }
+        return list;
+    }
 }

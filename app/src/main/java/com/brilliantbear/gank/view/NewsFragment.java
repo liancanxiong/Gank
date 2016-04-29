@@ -79,7 +79,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         mList.setAdapter(mAdapter);
 
         mListPresenter = new NewsPresenter(this);
-        mListPresenter.getData(NEWS_COUNT, START_PAGED);
+//        mListPresenter.getData(NEWS_COUNT, START_PAGED);
     }
 
     private void showRefresh(boolean isShow) {
