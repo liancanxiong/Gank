@@ -69,6 +69,7 @@ public class NewsModel implements IListModel {
                     @Override
                     public void onNext(List<NewsEntity> newsEntities) {
                         Log.d("Gank", newsEntities.toString());
+                        Log.d("Gank", "Thread:"+Thread.currentThread().getName());
                         listener.onSuccess(newsEntities, paged == 1);
                     }
                 });

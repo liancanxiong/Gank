@@ -17,5 +17,5 @@ public interface IListView {
 
     void dataLoadMore(List<NewsEntity> newsEntities);
 
-    void showError(String error);
+    void showSth(String error);
 }

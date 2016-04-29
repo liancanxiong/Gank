@@ -34,7 +34,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
     @Bind(R.id.rv_list)
     RecyclerView mList;
     private NewsAdapter mAdapter;
-    private IListPresenter mPresenter;
+    private IListPresenter mListPresenter;
     private List<NewsEntity> mNews;
     private int hadLoadPaged = 1;
     private LinearLayoutManager mLayoutManager;
@@ -58,7 +58,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
                 if (newState == RecyclerView.SCROLL_STATE_IDLE
                         && mLayoutManager.findLastVisibleItemPosition() == mNews.size() - 1) {
                     Log.d("Gank", "load more");
-                    mPresenter.getData(NEWS_COUNT, hadLoadPaged + 1);
+                    mListPresenter.getData(NEWS_COUNT, hadLoadPaged + 1);
                 }
             }
         });
@@ -71,7 +71,6 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
         mDB = DB.getInstance(mContext);
-
         mNews = mDB.getNews();
         if (mNews == null)
             mNews = new ArrayList<>();
@@ -79,8 +78,8 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         mAdapter = new NewsAdapter(mNews);
         mList.setAdapter(mAdapter);
 
-        mPresenter = new NewsPresenter(this);
-        mPresenter.getData(NEWS_COUNT, START_PAGED);
+        mListPresenter = new NewsPresenter(this);
+        mListPresenter.getData(NEWS_COUNT, START_PAGED);
     }
 
     private void showRefresh(boolean isShow) {
@@ -111,8 +110,8 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         mNews.addAll(newsEntities);
         mAdapter.notifyDataSetChanged();
 
-        Snackbar.make(mList, "数据已刷新", Snackbar.LENGTH_SHORT).show();
         Log.d("Gank", "data refresh");
+
         mDB.saveNews(newsEntities);
     }
 
@@ -127,12 +126,12 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
     }
 
     @Override
-    public void showError(String error) {
+    public void showSth(String error) {
         Snackbar.make(mList, error, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRefresh() {
-        mPresenter.getData(NEWS_COUNT, START_PAGED);
+        mListPresenter.getData(NEWS_COUNT, START_PAGED);
     }
 }

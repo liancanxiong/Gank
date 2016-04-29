@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.brilliantbear.gank.bean.NewsEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -40,20 +41,17 @@ public class DB {
         if (news == null)
             return;
 
-//        mRealm.executeTransactionAsync(new Realm.Transaction() {
-//            @Override
-//            public void execute(Realm realm) {
-//                realm.where(NewsEntity.class).findAll().deleteAllFromRealm();
-//                realm.copyToRealmOrUpdate(news);
-//            }
-//        });
-        mRealm.beginTransaction();
-        mRealm.where(NewsEntity.class).findAll().deleteAllFromRealm();
-        mRealm.copyToRealmOrUpdate(news);
-        mRealm.commitTransaction();
+        mRealm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.where(NewsEntity.class).findAll().deleteAllFromRealm();
+                realm.copyToRealmOrUpdate(news);
+            }
+        });
+
     }
 
     public List<NewsEntity> getNews() {
-        return mRealm.where(NewsEntity.class).findAll();
+        return new ArrayList<NewsEntity>(mRealm.where(NewsEntity.class).findAll());
     }
 }

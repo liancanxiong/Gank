@@ -30,9 +30,10 @@ public class NewsPresenter implements IListPresenter, OnGetDataListener {
     @Override
     public void onSuccess(List<NewsEntity> newsEntities, boolean isRefresh) {
         view.hideProgress();
-        if(isRefresh){
+        if (isRefresh) {
             view.dataRefresh(newsEntities);
-        }else{
+            view.showSth("数据已刷新");
+        } else {
             view.dataLoadMore(newsEntities);
         }
     }
@@ -40,6 +41,6 @@ public class NewsPresenter implements IListPresenter, OnGetDataListener {
     @Override
     public void onFailed() {
         view.hideProgress();
-        view.showError("获取数据失败");
+        view.showSth("获取数据失败");
     }
 }
