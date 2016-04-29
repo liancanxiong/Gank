@@ -13,4 +13,7 @@ public interface GankService {
 
     @GET("all/{count}/{paged}")
     Observable<ResultEntity> getNews(@Path("count") int count, @Path("paged") int paged);
+
+    @GET("福利/{count}/{paged}")
+    Observable<ResultEntity> getGirls(@Path("count") int count, @Path("paged") int paged);
 }
