@@ -9,6 +9,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 /**
  * Created by cx.lian on 2016/4/28.
@@ -67,5 +68,15 @@ public class DB {
             list.add(entity);
         }
         return list;
+    }
+
+    public void saveImage(Image image) {
+        mRealm.beginTransaction();
+        mRealm.copyToRealmOrUpdate(image);
+        mRealm.commitTransaction();
+    }
+
+    public Image getImage(String url){
+        return mRealm.where(Image.class).equalTo("url", url).findFirst();
     }
 }

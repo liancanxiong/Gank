@@ -113,6 +113,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         Log.d("Gank", "data refresh");
 
         mDB.saveNews(newsEntities);
+        hadLoadPaged = 1;
     }
 
     @Override

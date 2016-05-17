@@ -37,7 +37,7 @@ public class GirlsModel implements IListModel {
                         return resultEntity.getResults();
                     }
                 })
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<NewsEntity>>() {
                     @Override
                     public void onCompleted() {
@@ -45,11 +45,13 @@ public class GirlsModel implements IListModel {
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("Gank", e.toString());
                         listener.onFailed();
                     }
 
                     @Override
                     public void onNext(List<NewsEntity> newsEntities) {
+//                        Log.d("Gank", newsEntities.toString());
                         listener.onSuccess(newsEntities, paged == 1);
                     }
                 });

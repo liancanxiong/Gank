@@ -12,6 +12,16 @@ public class Image extends RealmObject {
     private Integer width;
     private Integer height;
 
+
+    public Image() {
+    }
+
+    public Image(String url, Integer width, Integer height) {
+        this.url = url;
+        this.width = width;
+        this.height = height;
+    }
+
     public String getUrl() {
         return url;
     }

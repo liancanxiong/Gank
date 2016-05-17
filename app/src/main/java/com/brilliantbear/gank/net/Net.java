@@ -3,8 +3,8 @@ package com.brilliantbear.gank.net;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.brilliantbear.gank.bean.ImageSize;
 import com.brilliantbear.gank.bean.ResultEntity;
+import com.brilliantbear.gank.db.Image;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -55,16 +55,24 @@ public class Net {
         return mService.getGirls(count, paged);
     }
 
-    public ImageSize getImageSize(String url) throws IOException {
+    public static Image getImageSize(String url) {
         OkHttpClient mClient = new OkHttpClient.Builder()
                 .readTimeout(10, TimeUnit.SECONDS)
                 .build();
-        Response response = mClient.newCall(new Request.Builder().url(url).build()).execute();
+        Response response = null;
+        try {
+            response = mClient.newCall(new Request.Builder().url(url).build()).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (response == null)
+            return null;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         Bitmap bitmap = BitmapFactory.decodeStream(response.body().byteStream(), null, options);
+        response.body().close();
         int width = options.outWidth;
         int height = options.outHeight;
-        return new ImageSize(width, height);
+        return new Image(url, width, height);
     }
 }
