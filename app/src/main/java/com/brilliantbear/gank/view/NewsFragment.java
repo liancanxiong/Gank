@@ -75,7 +75,7 @@ public class NewsFragment extends BaseFragment implements IListView, SwipeRefres
         if (mNews == null)
             mNews = new ArrayList<>();
 
-        mAdapter = new NewsAdapter(mNews);
+        mAdapter = new NewsAdapter(mContext, mNews);
         mList.setAdapter(mAdapter);
 
         mListPresenter = new NewsPresenter(this);
