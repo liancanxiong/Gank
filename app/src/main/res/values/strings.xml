@@ -2,9 +2,20 @@
     <string name="app_name">Gank</string>
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
-    <string name="tab_news">干货</string>
-    <string name="tab_girls">妹子</string>
+    <string name="tab_news">News</string>
+    <string name="tab_girls">Girls</string>
 
+    <string name="item_view">View</string>
+    <string name="item_main">Main</string>
+    <string name="item_android">Android</string>
+    <string name="item_ios">iOS</string>
+    <string name="item_video">Video</string>
+    <string name="item_girls">Girls</string>
+    <string name="item_resource">Resource</string>
+    <string name="item_web">Web</string>
+    <string name="item_recommend">Recommend</string>
+    <string name="item_app">App</string>
+    <string name="item_about">About</string>
 
     <array name="tab_title">
         <item>@string/tab_news</item>

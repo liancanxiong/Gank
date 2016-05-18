@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Gank</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+    <string name="tab_news">干货</string>
+    <string name="tab_girls">福利</string>
+
+    <string name="item_view">界面</string>
+    <string name="item_main">主界面</string>
+    <string name="item_android">Android</string>
+    <string name="item_ios">iOS</string>
+    <string name="item_video">休息视频</string>
+    <string name="item_girls">妹纸</string>
+    <string name="item_resource">扩展资源</string>
+    <string name="item_web">前端</string>
+    <string name="item_recommend">瞎推荐</string>
+    <string name="item_app">App</string>
+    <string name="item_about">关于</string>
+
+    <array name="tab_title">
+        <item>@string/tab_news</item>
+        <item>@string/tab_girls</item>
+    </array>
+</resources>

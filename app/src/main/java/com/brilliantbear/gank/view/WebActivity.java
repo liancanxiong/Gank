@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.webkit.WebView;
 
 import com.brilliantbear.gank.R;
@@ -106,5 +105,30 @@ public class WebActivity extends BaseActivity implements IWebView, SwipeRefreshL
     @Override
     public void onRefresh() {
         mWeb.reload();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mWeb != null) {
+            mWeb.onResume();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mWeb != null) {
+            mWeb.destroy();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mWeb != null) {
+            mWeb.onPause();
+        }
     }
 }
