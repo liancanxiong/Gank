@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import com.brilliantbear.gank.R;
 import com.brilliantbear.gank.custom.RadioImageView;
 import com.brilliantbear.gank.db.Image;
-import com.bumptech.glide.Glide;
+import com.brilliantbear.gank.utils.ImageUtils;
+import com.brilliantbear.gank.view.PicViewerActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,10 +35,22 @@ public class GirlsAdapter extends RecyclerView.Adapter<GirlsAdapter.GirlsViewHol
     }
 
     @Override
-    public void onBindViewHolder(GirlsViewHolder holder, int position) {
+    public void onBindViewHolder(GirlsViewHolder holder, final int position) {
         Image image = images.get(position);
         holder.ivRadio.setOriginalSize(image.getWidth(), image.getHeight());
-        Glide.with(context).load(image.getUrl()).into(holder.ivRadio);
+//        Glide.with(context).load(image.getUrl()).into(holder.ivRadio);
+        ImageUtils.display(context, holder.ivRadio, image.getUrl());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> urls = new ArrayList<>();
+                for (Image image : images) {
+                    urls.add(image.getUrl());
+                }
+                PicViewerActivity.gotoViewer(context, urls, position);
+            }
+        });
     }
 
     @Override

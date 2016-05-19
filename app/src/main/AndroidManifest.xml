@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.brilliantbear.gank">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.WebActivity"/>
+        <activity android:name=".view.WebActivity" />
+        <activity
+            android:name=".view.PicViewerActivity"
+            android:theme="@style/AppFullScreenTheme"></activity>
     </application>
 
 </manifest>
