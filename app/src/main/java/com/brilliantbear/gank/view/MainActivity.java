@@ -6,7 +6,10 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.brilliantbear.gank.R;
 
@@ -59,7 +62,49 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_main:
+
+                break;
+            case R.id.item_android:
+
+                break;
+            case R.id.item_ios:
+
+                break;
+            case R.id.item_video:
+
+                break;
+            case R.id.item_girls:
+
+                break;
+            case R.id.item_resource:
+
+                break;
+            case R.id.item_web:
+
+                break;
+            case R.id.item_recommend:
+
+                break;
+            case R.id.item_app:
+
+                break;
+            case R.id.item_about:
+                showAboutDialog();
+                break;
+        }
         closeDrawer();
         return true;
+    }
+
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        TextView textView = new TextView(this);
+        textView.setText(Html.fromHtml(getString(R.string.about)));
+        builder.setView(textView, 50, 50, 50, 0);
+        builder.setTitle(getString(R.string.item_about));
+        builder.setPositiveButton("Ok", null);
+        builder.show();
     }
 }

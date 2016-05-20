@@ -4,19 +4,40 @@
     <item android:title="@string/item_view">
         <menu>
             <group android:checkableBehavior="single">
-                <item android:title="@string/item_main" android:checked="true"/>
-                <item android:title="@string/item_android" />
-                <item android:title="@string/item_ios" />
-                <item android:title="@string/item_video" />
-                <item android:title="@string/item_girls" />
-                <item android:title="@string/item_resource" />
-                <item android:title="@string/item_web" />
-                <item android:title="@string/item_recommend" />
-                <item android:title="@string/item_app" />
+                <item
+                    android:id="@+id/item_main"
+                    android:checked="true"
+                    android:title="@string/item_main" />
+                <item
+                    android:id="@+id/item_android"
+                    android:title="@string/item_android" />
+                <item
+                    android:id="@+id/item_ios"
+                    android:title="@string/item_ios" />
+                <item
+                    android:id="@+id/item_video"
+                    android:title="@string/item_video" />
+                <item
+                    android:id="@+id/item_girls"
+                    android:title="@string/item_girls" />
+                <item
+                    android:id="@+id/item_resource"
+                    android:title="@string/item_resource" />
+                <item
+                    android:id="@+id/item_web"
+                    android:title="@string/item_web" />
+                <item
+                    android:id="@+id/item_recommend"
+                    android:title="@string/item_recommend" />
+                <item
+                    android:id="@+id/item_app"
+                    android:title="@string/item_app" />
             </group>
         </menu>
 
     </item>
 
-    <item android:title="@string/item_about" />
+    <item
+        android:id="@+id/item_about"
+        android:title="@string/item_about" />
 </menu>

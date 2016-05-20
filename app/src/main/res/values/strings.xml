@@ -17,6 +17,8 @@
     <string name="item_app">App</string>
     <string name="item_about">About</string>
 
+    <string name="about"><![CDATA[<h2>应用：Gank</h2><h2>作者：brilliantBear<h2><h3>感谢：代码家</h3><h3>本应用内容全部来自<a href="http://gank.io/">干货集中营</a></h3><div>联系我:<a href="mailto:canxionglian@gmail.com">canxionglian@gmail.com</a></div>]]></string>
+
     <array name="tab_title">
         <item>@string/tab_news</item>
         <item>@string/tab_girls</item>
