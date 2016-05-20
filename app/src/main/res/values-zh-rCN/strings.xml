@@ -16,6 +16,7 @@
     <string name="item_recommend">瞎推荐</string>
     <string name="item_app">App</string>
     <string name="item_about">关于</string>
+    <string name="item_function">功能</string>
 
     <array name="tab_title">
         <item>@string/tab_news</item>

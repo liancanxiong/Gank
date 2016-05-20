@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="3dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
@@ -21,21 +21,20 @@
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/type"
-            android:drawablePadding="5dp"
+            android:textColor="@android:color/white"
             tools:text="Android" />
 
         <TextView
-            android:gravity="center_vertical"
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
             android:layout_marginTop="3dp"
             android:ellipsize="end"
+            android:gravity="center_vertical"
             android:lines="2"
-            tools:text="《ES6 标准入门》（第二版）， 讲解详细，是作者 2015年所有的诚意和坚持"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="《ES6 标准入门》（第二版）， 讲解详细，是作者 2015年所有的诚意和坚持" />
 
         <LinearLayout
             android:layout_width="match_parent"

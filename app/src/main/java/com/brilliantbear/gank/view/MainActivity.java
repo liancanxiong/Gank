@@ -46,6 +46,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void initNav() {
         mNav.setNavigationItemSelectedListener(this);
+        mNav.setCheckedItem(R.id.item_main);
     }
 
     private void initDrawer() {
@@ -66,30 +67,30 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.item_main:
 
                 break;
-            case R.id.item_android:
-
-                break;
-            case R.id.item_ios:
-
-                break;
-            case R.id.item_video:
-
-                break;
-            case R.id.item_girls:
-
-                break;
-            case R.id.item_resource:
-
-                break;
-            case R.id.item_web:
-
-                break;
-            case R.id.item_recommend:
-
-                break;
-            case R.id.item_app:
-
-                break;
+//            case R.id.item_android:
+//
+//                break;
+//            case R.id.item_ios:
+//
+//                break;
+//            case R.id.item_video:
+//
+//                break;
+//            case R.id.item_girls:
+//
+//                break;
+//            case R.id.item_resource:
+//
+//                break;
+//            case R.id.item_web:
+//
+//                break;
+//            case R.id.item_recommend:
+//
+//                break;
+//            case R.id.item_app:
+//
+//                break;
             case R.id.item_about:
                 showAboutDialog();
                 break;

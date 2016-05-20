@@ -48,7 +48,7 @@ public class Net {
     }
 
     public Observable<ResultEntity> getNews(int count, int paged) {
-        return mService.getNews(count, paged);
+        return mService.getAllNews(count, paged);
     }
 
     public Observable<ResultEntity> getGirls(int count, int paged) {

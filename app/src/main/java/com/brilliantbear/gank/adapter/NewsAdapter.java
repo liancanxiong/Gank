@@ -2,6 +2,7 @@ package com.brilliantbear.gank.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,12 +43,35 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.tvType.setText(entity.getType());
         holder.tvDate.setText(entity.getPublishedAt().substring(0, 10));
 
+        setTypeBackground(holder.tvType);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WebActivity.gotoWebActivity(context, entity.getUrl(), entity.getDesc());
             }
         });
+    }
+
+    private void setTypeBackground(TextView tvType) {
+        String content = tvType.getText().toString().trim();
+        if (TextUtils.equals(content, "Android")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_bule));
+        } else if (TextUtils.equals(content, "iOS")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_pink));
+        } else if (TextUtils.equals(content, "休息视频")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_green));
+        } else if (TextUtils.equals(content, "拓展资源")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_grey));
+        } else if (TextUtils.equals(content, "前端")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_purple));
+        } else if (TextUtils.equals(content, "瞎推荐")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_orange));
+        } else if (TextUtils.equals(content, "App")) {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_yellow));
+        } else {
+            tvType.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.tag_bg_red));
+        }
     }
 
     @Override
